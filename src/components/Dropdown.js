@@ -48,8 +48,13 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         >
           <i className="dropdown icon"></i>
           <div className="text">{selected.label}</div>
-          <div className={`menu ${open && "visible transition"}`}>{renderedOptions}</div>
+          <div className={`menu ${open && "visible transition"}`}>
+            {renderedOptions}
+          </div>
         </div>
+      </div>
+      <div className={`ui ${selected.value} inverted segment`}>
+        <p className="ui inverted header">You have selected {selected.value}!</p>
       </div>
     </div>
   );
