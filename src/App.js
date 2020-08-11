@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 import Accordion from './components/Accordion'
-import Search from './components/Search'
 import Dropdown from './components/Dropdown'
+import Search from './components/Search'
+import Translate from './components/Translate'
 import "./App.css";
 
 const items = [
@@ -40,13 +41,9 @@ const App = () => {
 
   return (
     <div>
-      <Dropdown
-        options={options}
-        selected={selected}
-        onSelectedChange={setSelected}
-      />
+      <Translate />
     </div>
-  )
+  );
 }
 
 export default App
