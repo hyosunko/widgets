@@ -16,7 +16,7 @@ const Link = ({ className, href, children, currentLink, setCurrentLink}) => {
     setCurrentLink(navEvent.target.location.pathname);
   }
 
-  const activeLink = href === currentLink ? "active" : "";
+  const activeLink = href === currentLink ? "active orange" : "";
 
   return (
     <a className={`${className} ${activeLink}`} href={href} onClick={onClick}>
