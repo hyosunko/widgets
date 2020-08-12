@@ -7,15 +7,13 @@ import Route from './components/menu/Route'
 import Search from './components/Search'
 import Translate from './components/translate/Translate'
 import Video from './components/videos/Video'
-import options from './data/options'
+import colorOptions from './data/colorOptions'
 import items from './data/items'
 import "./App.css";
 
-
-
-const randomOption = Math.floor(Math.random() * options.length)
+const randomOption = Math.floor(Math.random() * colorOptions.length)
 const App = () => {
-  const [selected, setSelected] = useState(options[randomOption]);
+  const [selected, setSelected] = useState(colorOptions[randomOption]);
 
   return (
     <div className="ui container">
@@ -32,7 +30,7 @@ const App = () => {
       <Route path="/dropdown">
         <Dropdown
           label="Select a Color"
-          options={options}
+          options={colorOptions}
           onSelectedChange={setSelected}
           selected={selected}
         />

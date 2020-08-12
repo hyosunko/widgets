@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
-import axios from 'axios'
+import translate from "../../apis/translate";
 
 const Convert = ({ language, text }) => {
   const [translated, setTranslated] = useState('')
@@ -19,14 +18,12 @@ const Convert = ({ language, text }) => {
 
   useEffect(() => {
     const doTranslation = async () => {
-      const { data } = await axios.post(
-        "https://translation.googleapis.com/language/translate/v2",
+      const { data } = await translate.post("/",
         {},
         {
           params: {
             q: debouncedText,
             target: language.value,
-            key: process.env.REACT_APP_GOOGLE_TRANSLATE_API,
           },
         }
       );

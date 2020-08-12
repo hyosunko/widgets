@@ -37,12 +37,14 @@ const Search = () => {
   }, [debouncedTerm]);
 
   const renderedResults = results.map(result => {
+    const pageUrl = `https://en.wikipedia.org?curid=${result.pageid}`;
+
     return (
       <div key={result.pageid} className="item">
         <div className="right floated content">
           <a
             className="ui button"
-            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            href={pageUrl}
             target="_blank"
             rel="noopener noreferrer"
           >

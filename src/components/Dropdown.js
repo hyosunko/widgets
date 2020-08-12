@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-import useBodyClick from '../shred/useBodyClick'
+import useBodyClick from '../shared/useBodyClick'
 
 const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false)
@@ -10,14 +10,14 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
 
   useBodyClick(dropdownRef, setOpen, false);
 
-  const renderedOptions = options.map((option) => {
+  const renderedOptions = options.map((option, i) => {
     if (option.value === selected.value) {
       return null
     }
 
     return (
       <div
-        key={option.value}
+        key={i}
         className="item"
         onClick={() => onSelectedChange(option)}
       >
@@ -26,11 +26,39 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
     );
   });
 
-  const selectedColor = {
-    color: "#fff",
-    textShadow: "#000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px",
-  };
+  const handleBoxClick = e => {
+    const selectedOption = options.find(
+      (obj) => obj.value === e.target.innerText
+    );
 
+    if(selectedOption) {
+      onSelectedChange(selectedOption);
+      setOpen(false);
+    }
+  }
+
+  const textOutline =
+    "#000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px";
+
+  const selectedColor = { color: "#fff", textShadow: textOutline };
+
+  const boxColor = (option) => {
+    let border = {}
+    const cssList = {
+      backgroundColor: option.value,
+      color: "#fff",
+      fontSize: "0.8rem",
+      textShadow: textOutline,
+      textAlign: "center",
+      wordWrap: "break-word",
+    };
+
+    if( option.value === selected?.value ) {
+      border = { border: "5px red solid"}
+    }
+
+    return { ...border, ...cssList };
+  }
   const selectedBackgroundColor = { backgroundColor: selected.value };
 
   return (
@@ -51,10 +79,30 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
         </div>
       </div>
       {showSelectedItem && (
-        <div className={`ui segment`} style={selectedBackgroundColor}>
-          <p className="ui header" style={selectedColor}>
-            You have selected {selected.value}!
-          </p>
+        <div className="ui container">
+          <div className={`ui segment`} style={selectedBackgroundColor}>
+            <p className="ui header" style={selectedColor}>
+              You have selected {selected.value}!
+            </p>
+          </div>
+          <div>
+            Available Colors
+            <hr />
+            <div className="ui celled grid">
+              {options.map((option) => {
+                return (
+                  <div
+                    key={option.value}
+                    className="one wide column"
+                    onClick={handleBoxClick}
+                    style={boxColor(option)}
+                  >
+                    {option.value}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
     </div>

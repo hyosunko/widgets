@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
-import useBodyClick from '../shred/useBodyClick'
+
+import useBodyClick from '../shared/useBodyClick'
 
 const Accordion = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(null)

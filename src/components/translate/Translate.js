@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 
 import Convert from './Convert'
 import Dropdown from '../Dropdown'
+
 import languageOptions from '../../data/languageOptions'
-
-
 
 const Translate = () => {
   const [language, setLanguage] = useState(languageOptions[0]);
