@@ -1,33 +1,13 @@
 import React, { useState } from 'react'
 
 import Convert from './Convert'
-import Dropdown from './Dropdown'
+import Dropdown from '../Dropdown'
+import languageOptions from '../../data/languageOptions'
 
-const options = [
-  {
-    label: 'Korean',
-    value: 'ko'
-  },
-  {
-    label: 'Japanses',
-    value: 'ja'
-  },
-  {
-    label: 'Afrikaans',
-    value: 'af'
-  },
-  {
-    label: 'Arabic',
-    value: 'ar'
-  },
-  {
-    label: 'Hindi',
-    value: 'hi'
-  }
-]
+
 
 const Translate = () => {
-  const [language, setLanguage] = useState(options[0])
+  const [language, setLanguage] = useState(languageOptions[0]);
   const [text, setText] = useState('')
 
   return (
@@ -40,7 +20,7 @@ const Translate = () => {
       </div>
       <Dropdown
         label="Select a Language"
-        options={options}
+        options={languageOptions}
         selected={language}
         onSelectedChange={setLanguage}
       />

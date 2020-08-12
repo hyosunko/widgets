@@ -1,24 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
+import useBodyClick from '../shred/useBodyClick'
 
 const Accordion = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(null)
   const accordionRef = useRef()
 
-  useEffect(() => {
-    const onBodyClick = (e) => {
-      if (accordionRef.current.contains(e.target)) {
-        return
-      }
-
-      setActiveIndex(null)
-    }
-
-      document.body.addEventListener('click', onBodyClick)
-
-    return () => {
-      document.body.removeEventListener('click', onBodyClick)
-    }
-  }, [])
+  useBodyClick(accordionRef, setActiveIndex, null)
 
   const renderedItems = items.map((item, i) => {
     const active = i === activeIndex

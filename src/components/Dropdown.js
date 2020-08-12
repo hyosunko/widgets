@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
+
+import useBodyClick from '../shred/useBodyClick'
 
 const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false)
@@ -6,21 +8,7 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
 
   const showSelectedItem = window.location.pathname === "/dropdown";
 
-  useEffect(() => {
-    const onBodyClick = (e) => {
-      if (dropdownRef.current.contains(e.target)) {
-        return;
-      }
-
-      setOpen(false);
-    };
-
-    document.body.addEventListener('click', onBodyClick)
-
-    return () => {
-      document.body.removeEventListener('click', onBodyClick)
-    }
-  }, [])
+  useBodyClick(dropdownRef, setOpen, false);
 
   const renderedOptions = options.map((option) => {
     if (option.value === selected.value) {
@@ -37,6 +25,13 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
       </div>
     );
   });
+
+  const selectedColor = {
+    color: "#fff",
+    textShadow: "#000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px",
+  };
+
+  const selectedBackgroundColor = { backgroundColor: selected.value };
 
   return (
     <div ref={dropdownRef} className="ui form">
@@ -56,8 +51,8 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
         </div>
       </div>
       {showSelectedItem && (
-        <div className={`ui ${selected.value} inverted segment`}>
-          <p className="ui inverted header">
+        <div className={`ui segment`} style={selectedBackgroundColor}>
+          <p className="ui header" style={selectedColor}>
             You have selected {selected.value}!
           </p>
         </div>
