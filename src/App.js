@@ -6,6 +6,7 @@ import Header from './components/menu/Header'
 import Route from './components/menu/Route'
 import Search from './components/Search'
 import Translate from './components/translate/Translate'
+import Video from './components/videos/Video'
 import options from './data/options'
 import items from './data/items'
 import "./App.css";
@@ -24,6 +25,9 @@ const App = () => {
       </Route>
       <Route path="/list">
         <Search />
+      </Route>
+      <Route path="/video">
+        <Video />
       </Route>
       <Route path="/dropdown">
         <Dropdown

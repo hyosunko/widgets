@@ -23,6 +23,14 @@ const Header = () => {
         Search
       </Link>
       <Link
+        href="/video"
+        className="item"
+        currentLink={currentLink}
+        setCurrentLink={setCurrentLink}
+      >
+        Video
+      </Link>
+      <Link
         href="/dropdown"
         className="item"
         currentLink={currentLink}
