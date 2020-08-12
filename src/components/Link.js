@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Link = ({ className, href, children}) => {
+const Link = ({ className, href, children, currentLink, setCurrentLink}) => {
+
   const onClick = (e) => {
     if (e.metaKey || e.ctrlKey) {
       return
@@ -11,10 +12,14 @@ const Link = ({ className, href, children}) => {
 
     const navEvent = new PopStateEvent('popstate')
     window.dispatchEvent(navEvent)
+
+    setCurrentLink(navEvent.target.location.pathname);
   }
 
+  const activeLink = href === currentLink ? "active" : "";
+
   return (
-    <a className={className} href={href} onClick={onClick}>
+    <a className={`${className} ${activeLink}`} href={href} onClick={onClick}>
       {children}
     </a>
   );
