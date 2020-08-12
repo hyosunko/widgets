@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import Accordion from './components/Accordion'
 import Dropdown from './components/Dropdown'
+import Route from './components/Route'
 import Search from './components/Search'
 import Translate from './components/Translate'
 import "./App.css";
@@ -36,36 +37,28 @@ const options = [
   },
 ]
 
-const showAccordion = () => {
-  if (window.location.pathname === '/') {
-    return <Accordion items={items} />;
-  }
-}
-const showList = () => {
-  if (window.location.pathname === '/list') {
-    return <Search />;
-  }
-}
-const showDropdown= () => {
-  if (window.location.pathname === '/dropdown') {
-    return <Dropdown />;
-  }
-}
-const showTranslate = () => {
-  if (window.location.pathname === '/translate') {
-    return <Translate />;
-  }
-}
-
 const App = () => {
   const [selected, setSelected] = useState(options[0])
 
   return (
     <div>
-      {showAccordion()}
-      {showList()}
-      {showDropdown()}
-      {showTranslate()}
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          label="Select a Color"
+          options={options}
+          onSelectedChange={setSelected}
+          selected={selected}
+        />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 }

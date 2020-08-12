@@ -4,6 +4,8 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false)
   const ref = useRef()
 
+  const showSelectedItem = window.location.pathname === "/dropdown";
+
   useEffect(() => {
     const onBodyClick = (e) => {
       if (ref.current.contains(e.target)) {
@@ -53,9 +55,13 @@ const Dropdown = ({ label, options, selected, onSelectedChange }) => {
           </div>
         </div>
       </div>
-      <div className={`ui ${selected.value} inverted segment`}>
-        <p className="ui inverted header">You have selected {selected.value}!</p>
-      </div>
+      {showSelectedItem && (
+        <div className={`ui ${selected.value} inverted segment`}>
+          <p className="ui inverted header">
+            You have selected {selected.value}!
+          </p>
+        </div>
+      )}
     </div>
   );
 };
