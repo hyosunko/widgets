@@ -20,7 +20,7 @@ const Header = () => {
         currentLink={currentLink}
         setCurrentLink={setCurrentLink}
       >
-        Search
+        Wikipedia Search
       </Link>
       <Link
         href="/video"
@@ -28,7 +28,7 @@ const Header = () => {
         currentLink={currentLink}
         setCurrentLink={setCurrentLink}
       >
-        Video
+        Youtube Video
       </Link>
       <Link
         href="/dropdown"
